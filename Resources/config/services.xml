@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sema_minifyhtml.listener.class">Sema\Bundle\MinifierBundle\Listener\MinifyResponseListener</parameter>
+        <parameter key="sema_minifyhtml.twig.extension">Sema\Bundle\MinifierBundle\Twig\Extension\MinifyHTMLExtension</parameter>
+        <parameter key="sema_combined_assets.twig.extension">Sema\Bundle\MinifierBundle\Twig\Extension\CombinedAssetsExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="sema.minifyhtml.twig.extension" class="%sema_minifyhtml.twig.extension%" public="false">
+            <tag name="twig.extension" />
+        </service>
+        <service id="sema.minifyhtml.response" class="%sema_minifyhtml.listener.class%">
+			<tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
+            <argument>%sema_minifier.enable_listener%</argument>
+        </service>
+        <service id="sema.combined_assets.twig.extension" class="%sema_combined_assets.twig.extension%">
+            <tag name="twig.extension" />
+            <argument type="service" id="service_container" />
+            <argument>%kernel.debug%</argument>
+        </service>
+    </services>
+</container>
