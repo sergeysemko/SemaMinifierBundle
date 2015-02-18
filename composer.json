@@ -16,7 +16,6 @@
         "symfony/framework-bundle": "~2.1",
         "symfony/dependency-injection": "~2.1",
         "mrclay/minify": "*",
-        "kriswallsmith/assetic": "~1.2",
         "symfony/console": "~2.3"
     },
     "autoload":     {
