@@ -120,21 +120,23 @@ Depending on the debug mode expansion will transmit a pattern or an array of sou
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% for url in assets.css['main'] %}
-            <link rel="stylesheet" href="{{ asset(url) }}" />
-        {% endfor %}
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+          {% for url in assets.css['main'] %}
+              <link rel="stylesheet" href="{{ asset(url) }}" />
+          {% endfor %}
+        {% endblock %}
         <!--[if lt IE 9]>
             <script src="{{ asset(assets.js['html5shiv'][0], version='1') }}"></script>
         <![endif]-->
-        {% for url in assets.js['vendor'] %}
-            <script src="{{ asset(url) }}"></script>
-        {% endfor %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+          {% for url in assets.js['vendor'] %}
+              <script src="{{ asset(url) }}"></script>
+          {% endfor %}
+        {% endblock %}
     </body>
 </html>
 ```
