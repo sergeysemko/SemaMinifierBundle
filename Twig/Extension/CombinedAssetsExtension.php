@@ -22,7 +22,7 @@ class CombinedAssetsExtension extends \Twig_Extension
         $this->container = $container;
         $confDir = $this->container->get('kernel')->getRootDir().'/config';
         if (!file_exists($confDir . '/assets.json')) {
-            throw new \RuntimeException('The file '.$confDir.'/assets.json does not exist.');
+            return;
         }
 
         $assetsFiles = json_decode(file_get_contents($confDir . '/assets.json'), true);
