@@ -95,7 +95,7 @@ The configuration file is a JSON file that describes all the rules for combining
         "vendor": {
             "output": "assets/js/dist/vendor.min.js",
             "input": [
-                "assets/libs/jquery/dist/jquery.js",
+                "assets/libs/jquery/dist/jquery.js"
             ]
         },
         "html5shiv": {
@@ -106,7 +106,7 @@ The configuration file is a JSON file that describes all the rules for combining
             "output": "assets/js/dist/form.min.js",
             "input": [
                 "assets/libs/parsleyjs/dist/parsley.js",
-                "assets/libs/jquery-ui/jquery-ui.js"
+                "assets/libs/jquery-ui/jquery-ui.js",
                 "assets/js/form.js"
             ]
         }
