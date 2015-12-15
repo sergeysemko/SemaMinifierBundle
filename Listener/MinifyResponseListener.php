@@ -2,6 +2,7 @@
 
 namespace Sema\Bundle\MinifierBundle\Listener;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 /**
@@ -30,6 +31,10 @@ class MinifyResponseListener
     {
         if($this->enableListener) {
             $response = $event->getResponse();
+
+            if ( $response instanceof BinaryFileResponse )
+                return;
+
             $content = \Minify_HTML::minify($response->getContent(), array('cssMinifier' => array('Minify_CSS', 'minify'),
                                                                            'jsMinifier' => array('JSMinPlus', 'minify'),
                                                                            'xhtml' => false)
